@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as admin from 'firebase-admin';
 import { initializeApp } from "firebase/app";
 
 
@@ -16,13 +15,9 @@ async function bootstrap() {
   };
 
   const app2 = initializeApp(firebaseConfig);
-  console.log(app2);
+  // console.log(app2);
   
   const app = await NestFactory.create(AppModule);
-  // admin.initializeApp({
-  //   credential: admin.credential.cert(firebaseConfig),
-  // });
-
   await app.listen(3000);
 }
 bootstrap();
