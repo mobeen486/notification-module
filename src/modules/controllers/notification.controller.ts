@@ -7,12 +7,12 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { NotificationService } from './notification.service';
-import { CreateNotificationDto } from './dto/create-notification.dto';
-import { UpdateNotificationDto } from './dto/update-notification.dto';
+import { NotificationService } from '../services/notification.service';
+import { CreateNotificationDto } from '../models/notifications/create-notification.dto';
 import { Repository } from 'typeorm';
 import admin = require('firebase-admin');
-import { Notification } from './entities/notification.entity';
+import { Notification } from '../models/notifications/notification.entity';
+import { UpdateNotificationDto } from '../models/notifications/update-notification.dto';
 
 @Controller('notification')
 export class NotificationController {
@@ -22,7 +22,7 @@ export class NotificationController {
   ) {}
 
   @Post()
-  async create(@Body() notification: Notification) {
+  async create(@Body() notification: CreateNotificationDto) {
     const savedNotification = await this.notificationRepository.save(
       notification,
     );
